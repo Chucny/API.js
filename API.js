@@ -12,8 +12,8 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 async function website_get_contents(url) { 
-const response = await fetch("https://api.codetabs.com/v1/proxy?quest=" + url); 
-const data = await response.text(); 
+const response = await fetch("https://api.codetabs.com/v1/proxy?quest=" + url); //All the functions are async, because the only way to do await fetching is async, I just think it looks a bit confusing...
+const data = await response.text();//All the functions have the same syntax as the fetch() function
 return data; } // To use the function: website_get_contents("google.com").then((data) => do_what_you_want(data));
 async function getTitleAndDescription(url) { 
 try { // Fetch the URL content 
@@ -22,7 +22,7 @@ const html = await response.text(); // Create a DOM parser
 const parser = new DOMParser(); 
 const doc = parser.parseFromString(html, 'text/html'); // Get title and meta description 
 const title = doc.querySelector('title') ? doc.querySelector('title').innerText : ''; 
-const description = doc.querySelector('meta[name="description"]') ? doc.querySelector('meta[name="description"]').getAttribute('content') : ''; 
+const description = doc.querySelector('meta[name="description"]') ? doc.querySelector('meta[name="description"]').getAttribute('content') : ''; //Check my repository, SearchDatabase.js if you want to combine it with this, it has a very large database
 // Return the array with URL, title, and description 
 return [url, title, description]; } catch (error) { console.error('Error fetching or parsing the URL:', error); return [url, '', '']; } } 
 async function api_get_contents(url) { 
@@ -30,14 +30,32 @@ const response = await fetch(url);
 const data = await response.text(); 
 return data; }
 async function get_weather(city) { 
-const response = await fetch("https://api.codetabs.com/v1/weather?city="+city); 
+const response = await fetch("https://api.codetabs.com/v1/weather?city="+city); //Weather API
 const data = await response.text(); 
 return data; }
 async function get_ip_ipv4() { 
-const response = await fetch("https://api.ipify.org"); 
+const response = await fetch("https://api.ipify.org"); //Get your IP
 const data = await response.text(); 
 return data; }
 async function gender_by_name(name) { 
-const response = await fetch("https://api.genderize.io?name="+name); 
+const response = await fetch("https://api.genderize.io?name="+name); //Gender by name, could be used for different algorithms
 const data = await response.text(); 
 return data; }
+async function ip_location(ip) { 
+const response = await fetch("https://api.codetabs.com/v1/geolocation/xml?q="+ip); //Finding location of an IP
+const data = await response.text(); 
+return data; }
+async function duckduckgo_search(search_query) { 
+const response = await fetch("https://api.duckduckgo.com/?q="+search_query+"&format=json"); //DuckDuckGo Search API
+const data = await response.text(); 
+return data; }
+async function ping_ip_connection_keep_alive(ip){
+const response = await fetch("https://api.codetabs.com/v1/geolocation/xml?q="+ip);//This function is very clever... ...it uses an API, and the API server will send a request to the IP... I think there is a better way... ...This function is cursed ;D
+const data = await response.text();
+if(data != "undefined"){
+  return true;
+}
+else{
+  return false;
+}
+}
