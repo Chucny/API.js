@@ -37,3 +37,7 @@ async function get_ip_ipv4() {
 const response = await fetch("https://api.ipify.org"); 
 const data = await response.text(); 
 return data; }
+async function gender_by_name(name) { 
+const response = await fetch("https://api.genderize.io?name="+name); 
+const data = await response.text(); 
+return data; }
