@@ -49,13 +49,3 @@ async function duckduckgo_search(search_query) {
 const response = await fetch("https://api.duckduckgo.com/?q="+search_query+"&format=json"); //DuckDuckGo Search API
 const data = await response.text(); 
 return data; }
-async function ping_ip_connection_keep_alive(ip){
-const response = await fetch("https://api.codetabs.com/v1/geolocation/xml?q="+ip);//This function is very clever... ...it uses an API, and the API server will send a request to the IP... I think there is a better way... ...This function is cursed ;D
-const data = await response.text();
-if(data != "undefined"){
-  return true;
-}
-else{
-  return false;
-}
-}
