@@ -42,8 +42,8 @@ const response = await fetch("https://api.genderize.io?name="+name); //Gender by
 const data = await response.text(); 
 return data; }
 async function ip_location(ip) { 
-const response = await fetch("https://api.codetabs.com/v1/geolocation/xml?q="+ip); //Finding location of an IP
-const data = await response.text(); 
+const response = await fetch("https://api.codetabs.com/v1/geolocation/json?q="+ip); //Finding location of an IP 
+const data = await response.text(); //The IP can also be the domain of a website.
 return data; }
 async function duckduckgo_search(search_query) { 
 const response = await fetch("https://api.duckduckgo.com/?q="+search_query+"&format=json"); //DuckDuckGo Search API
